@@ -51,12 +51,12 @@ namespace Systems
         {
             var businessStaticData = _staticDataService.ForBusiness(businessCard.Id);
 
-            businessCard.LevelUpPrice = CalculateBusinessCardLevelUpPrice(businessCard, businessStaticData);
-            businessCard.Level++;
+            businessCard.Level += 1;
+            businessCard.LevelUpPrice = CalculateBusinessCardLevelUpPrice(ref businessCard, businessStaticData);
             businessCard.Income = businessCard.CalculateBusinessIncome(_staticDataService);
         }
 
-        private static int CalculateBusinessCardLevelUpPrice(BusinessCard businessCard,
+        private int CalculateBusinessCardLevelUpPrice(ref BusinessCard businessCard,
             BusinessStaticData businessStaticData)
         {
             return businessCard.Level * businessStaticData.DefaultPrice;
